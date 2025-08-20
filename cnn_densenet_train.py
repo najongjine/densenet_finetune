@@ -21,7 +21,7 @@ tf.random.set_seed(seed)
 
 # 설정값
 BATCH_SIZE = 16
-EPOCHS = 50
+EPOCHS = 100
 IMG_HEIGHT = 224
 IMG_WIDTH = 224
 
@@ -29,7 +29,7 @@ IMG_WIDTH = 224
 # 예: dataset 폴더 안에 train / validation 디렉토리 존재해야 함
 base_dir = "C:/Users/itg/Pictures/wheat"   # 👉 여기를 본인 PC 경로로 바꿔주세요
 train_dir = os.path.join(base_dir, "train")
-validation_dir = os.path.join(base_dir, "validation")
+validation_dir = os.path.join(base_dir, "valid")
 
 # 1️⃣ image_dataset_from_directory로 데이터 로드
 train_ds = tf.keras.utils.image_dataset_from_directory(
@@ -110,7 +110,7 @@ model.compile(
 )
 
 # 8️⃣ 학습
-early_stop = EarlyStopping(monitor="val_loss", patience=5,
+early_stop = EarlyStopping(monitor="val_loss", patience=10,
                            restore_best_weights=True)
 
 history = model.fit(
